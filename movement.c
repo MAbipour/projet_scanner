@@ -38,16 +38,17 @@
 static uint8_t mode_mot=MODE_MOT_ROTATION;
 
 
-void start_motor_straight(int16_t motor_speed, int dist){
+void start_motor_straight(int16_t motor_speed, int dist)
+{
 	static systime_t time;
     left_motor_set_speed(motor_speed);
     right_motor_set_speed(motor_speed);
     //volatile int i=abs(MM_CONV_STEPS*1000*dist/motor_speed);
-    time = chVTGetSystemTime();
+    //time = chVTGetSystemTime();
     chprintf((BaseSequentialStream *)&SD3, "time=%-7d\r\n", time);
     chThdSleepMilliseconds(abs(MM_CONV_STEPS*1000*dist/motor_speed));
-    time = chVTGetSystemTime();
-    chprintf((BaseSequentialStream *)&SD3, "time=%-7d\r\n", time);
+    //time = chVTGetSystemTime();
+    //chprintf((BaseSequentialStream *)&SD3, "time=%-7d\r\n", time);
 }
 
 
