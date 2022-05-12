@@ -23,7 +23,7 @@
 //uncomment to use double buffering to send the FFT to the computer
 #define DOUBLE_BUFFERING
 
-void SendUint8ToComputer(uint8_t* data, uint16_t size)
+/*void SendUint8ToComputer(uint8_t* data, uint16_t size)
 {
 	chSequentialStreamWrite((BaseSequentialStream *)&SD3, (uint8_t*)"START", 5);
 	chSequentialStreamWrite((BaseSequentialStream *)&SD3, (uint8_t*)&size, sizeof(uint16_t));
@@ -42,6 +42,7 @@ static void serial_start(void)
 
 	sdStart(&SD3, &ser_cfg); // UART3.
 }
+*/
 
 
 int main(void)
@@ -53,7 +54,7 @@ int main(void)
 
 
     //starts the serial communication
-    serial_start();
+    //serial_start();
     //starts the USB communication
     usb_start();
     dcmi_start();
