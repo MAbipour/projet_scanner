@@ -1,5 +1,9 @@
+build
+.DS_store
 # Prerequisites
 *.d
+*.cproject
+*.project
 
 # Object files
 *.o
