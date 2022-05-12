@@ -9,7 +9,7 @@
 #include <string.h>
 #include <math.h>
 #include <motors.h>
-#include <color_detection.h>
+#include <width_detection.h>
 #include <sensors/VL53L0X/VL53L0X.h>
 #include <chprintf.h>
 #include <pi_regulator.h>
