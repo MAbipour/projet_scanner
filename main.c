@@ -29,7 +29,7 @@
 	chSequentialStreamWrite((BaseSequentialStream *)&SD3, (uint8_t*)&size, sizeof(uint16_t));
 	chSequentialStreamWrite((BaseSequentialStream *)&SD3, (uint8_t*)data, size);
 }
-
+*/
 
 static void serial_start(void)
 {
@@ -42,7 +42,7 @@ static void serial_start(void)
 
 	sdStart(&SD3, &ser_cfg); // UART3.
 }
-*/
+
 
 
 int main(void)
@@ -53,8 +53,8 @@ int main(void)
     mpu_init();
 
 
-    //starts the serial communication
-    //serial_start();
+   //starts the serial communication
+    serial_start();
     //starts the USB communication
     usb_start();
     dcmi_start();

@@ -10,7 +10,7 @@
 #include <motors.h>
 #include <pi_regulator.h>
 #include <movement.h>
-#include <color_detection.h>
+#include <width_detection.h>
 
 
 #define MODE_REGULATOR_OFF 0

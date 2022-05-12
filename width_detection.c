@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <color_detection.h>
+#include <width_detection.h>
 #include "ch.h"
 #include "hal.h"
 #include <chprintf.h>
