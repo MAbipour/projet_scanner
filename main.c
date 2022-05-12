@@ -13,7 +13,7 @@
 #include <pi_regulator.h>
 
 #include <movement.h>
-#include <color_detection.h>
+#include <width_detection.h>
 #include <arm_math.h>
 
 
