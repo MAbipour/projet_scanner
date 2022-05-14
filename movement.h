@@ -11,7 +11,7 @@
 void start_ThdMovement(void);
 void set_mode_mot(uint8_t mode_mot_param);
 void start_motor_rot(int16_t nb_steps, u_int16_t speed_mot);
-void start_motor_rot_long(void);
+void start_motor_rot_avoidance(void);
 void stop_motor(void);
 
 

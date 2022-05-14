@@ -33,10 +33,10 @@ void start_motor_rot(int16_t nb_steps, u_int16_t speed_mot){
 
 //This function allows to shift the e-puck's field of view away from the object after it analysed an image
 //it prevents the e-puck from analysing the same object twice
-void start_motor_rot_long(void){
+void start_motor_rot_avoidance(void){
   	left_motor_set_speed(-SPEED_MOT_ROT);
    	right_motor_set_speed(SPEED_MOT_ROT);
-   	chThdSleepMilliseconds(1000*NB_STEP_ROT_LONG/SPEED_MOT);
+   	chThdSleepMilliseconds(1000*NB_STEP_ROT_AVOIDANCE/SPEED_MOT);
 }
 
 void stop_motor(void){

@@ -43,7 +43,7 @@ uint16_t extract_line_width(uint8_t *buffer){
 		{
 			//the slope must at least be WIDTH_SLOPE wide and is compared
 		    //to the mean of the image
-		    if(buffer[i] > mean && buffer[i+WIDTH_SLOPE] < mean)
+		    if(buffer[i] > mean+CORR_COEFF && buffer[i+WIDTH_SLOPE] < mean-CORR_COEFF)
 		    {
 		        begin = i;
 		        stop = 1;
@@ -57,7 +57,7 @@ uint16_t extract_line_width(uint8_t *buffer){
 
 		    while(stop == 0 && i < Y_IMAGE_SIZE)
 		    {
-		        if(buffer[i] > mean && buffer[i-WIDTH_SLOPE] < mean)
+		        if(buffer[i] > mean+CORR_COEFF && buffer[i-WIDTH_SLOPE] < mean-CORR_COEFF)
 		        {
 		            end = i;
 		            stop = 1;
@@ -93,7 +93,7 @@ uint16_t extract_line_width(uint8_t *buffer){
 
 	else{
 		width = (end - begin);
-		//chThdSleepMilliseconds(100);
+
 	}
 
 	return width;
@@ -128,7 +128,12 @@ static THD_FUNCTION(CaptureImage, arg) {
     }
 }
 
-
+void SendUint8ToComputer(uint8_t* data, uint16_t size)
+{
+	chSequentialStreamWrite((BaseSequentialStream *)&SD3, (uint8_t*)"START", 5);
+	chSequentialStreamWrite((BaseSequentialStream *)&SD3, (uint8_t*)&size, sizeof(uint16_t));
+	chSequentialStreamWrite((BaseSequentialStream *)&SD3, (uint8_t*)data, size);
+}
 
 
 static THD_WORKING_AREA(waProcessImage, 1024);
@@ -141,6 +146,7 @@ static THD_FUNCTION(ProcessImage, arg) {
 	uint8_t image[X_IMAGE_SIZE] = {0};
 	static uint16_t lineWidth = 0;
 
+	bool send_to_computer = true;
     while(1){
         chBSemWait(&image_ready_sem);
 		//gets the pointer to the array filled with the last image in RGB565
@@ -153,6 +159,13 @@ static THD_FUNCTION(ProcessImage, arg) {
 
 		//search for a line in the image and gets its width in pixels
 		lineWidth = extract_line_width(image);
+
+		if(send_to_computer){
+			//sends to the computer the image
+			SendUint8ToComputer(image, 640);
+		}
+		//invert the bool
+		send_to_computer = !send_to_computer;
 			if(cam_mode==MODE_CAMERA_ON){
 
 				//thin line detected. Action: shakes the head
@@ -184,7 +197,7 @@ static THD_FUNCTION(ProcessImage, arg) {
 
 			cam_mode=MODE_CAMERA_OFF;
 			set_front_led(FRONT_LED_ON);
-    		start_motor_rot_long();		//allows the e-puck to move away of the previously scanned object
+    		start_motor_rot_avoidance();		//allows the e-puck to move away of the previously scanned object
     		stop_motor();
     		set_mode_mot(MODE_MOT_ROTATION);
 			}
