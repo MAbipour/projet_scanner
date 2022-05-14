@@ -11,25 +11,11 @@
 #include <chprintf.h>
 #include <motors.h>
 #include <pi_regulator.h>
-
 #include <movement.h>
 #include <width_detection.h>
 #include <arm_math.h>
 
 
-//uncomment to send the FFTs results from the real microphones
-//#define SEND_FROM_MIC
-
-//uncomment to use double buffering to send the FFT to the computer
-#define DOUBLE_BUFFERING
-
-/*void SendUint8ToComputer(uint8_t* data, uint16_t size)
-{
-	chSequentialStreamWrite((BaseSequentialStream *)&SD3, (uint8_t*)"START", 5);
-	chSequentialStreamWrite((BaseSequentialStream *)&SD3, (uint8_t*)&size, sizeof(uint16_t));
-	chSequentialStreamWrite((BaseSequentialStream *)&SD3, (uint8_t*)data, size);
-}
-*/
 
 static void serial_start(void)
 {
@@ -52,21 +38,14 @@ int main(void)
     chSysInit();
     mpu_init();
 
-
-   //starts the serial communication
     serial_start();
-    //starts the USB communication
-    usb_start();
     dcmi_start();
     po8030_start();
-    //inits the motors
     motors_init();
-   // VL53L0X_start();
-    start_ThdMovement();
     VL53L0X_start();
+    start_ThdMovement();
     pi_regulator_start();
     process_image_start();
-    /* Infinite loop. */
     while (1) {
     	chThdSleepMilliseconds(100);
     }

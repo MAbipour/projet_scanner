@@ -5,8 +5,7 @@
  *      Author: misha
  */
 
-#define CAMERA_OFF 0
-#define CAMERA_ON 1
+
 
 #include <stdlib.h>
 
