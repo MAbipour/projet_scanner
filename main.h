@@ -15,8 +15,8 @@ extern "C" {
 #define MODE_MOT_OFF 2
 
 #define MOTOR_STOP 0
-#define SPEED_MOT 100
-#define SPEED_MOT_ROT 100
+#define SPEED_MOT 100		//in steps/s
+#define SPEED_MOT_ROT 100	//in steps/s
 #define NB_STEP_ROT 7
 #define NB_STEP_ROT_PRECI 1
 #define NB_STEP_ROT_AVOIDANCE 168
@@ -53,7 +53,7 @@ extern "C" {
 #define Y_IMAGE_SIZE 480
 #define THRESH_LINE_WIDTH_1 160
 #define THRESH_LINE_WIDTH_2 250
-#define WIDTH_SLOPE 5
+#define WIDTH_SLOPE 10
 #define CORR_COEFF 5
 #define MIN_LINE_WIDTH 20
 #define NO_LINE_FOUND 65535

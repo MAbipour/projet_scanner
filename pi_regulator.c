@@ -1,3 +1,6 @@
+//Code basé sur le TP4 du cours "Systèmes embarqués et robotique" du professeur Francesco Mondada
+//modifié par Misha Abipour
+
 #include "ch.h"
 #include "hal.h"
 #include <math.h>

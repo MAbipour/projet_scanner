@@ -1,3 +1,4 @@
+//code écrit par Maxime Leriche
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

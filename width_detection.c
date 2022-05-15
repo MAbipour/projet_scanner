@@ -1,3 +1,5 @@
+//Code basé sur le TP4 du cours "Systèmes embarqués et robotique" du professeur Francesco Mondada
+//modifié par Misha Abipour
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,7 +14,6 @@
 #include <leds.h>
 #include <main.h>
 #include <camera/po8030.h>
-
 
 
 
@@ -43,8 +44,8 @@ uint16_t extract_line_width(uint8_t *buffer){
 		{
 			//the slope must at least be WIDTH_SLOPE wide and is compared
 		    //to the mean of the image
-		    if(buffer[i] > mean+CORR_COEFF && buffer[i+WIDTH_SLOPE] < mean-CORR_COEFF)
-		    {
+		    if(buffer[i] > mean && buffer[i+WIDTH_SLOPE] < mean-CORR_COEFF)
+			{
 		        begin = i;
 		        stop = 1;
 		    }
