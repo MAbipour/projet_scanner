@@ -12,7 +12,6 @@
 #include  <motors.h> 
 #include  <width_detection.h> 
 #include  <sensors/VL53L0X/VL53L0X.h> 
-#include  <chprintf.h > //----------
 #include  <pi_regulator.h> 
 #include  <main.h> 
 #include  <movement.h> 

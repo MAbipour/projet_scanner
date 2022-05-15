@@ -13,7 +13,6 @@
 #include <width_detection.h>
 #include "ch.h"
 #include "hal.h"
-#include <chprintf.h>
 #include <usbcfg.h>
 #include <pi_regulator.h>
 #include <movement.h>
@@ -191,7 +190,7 @@ static THD_FUNCTION(ProcessImage, arg)
 				for(uint8_t i = 0; i < 10; i++)
 				{
 					set_front_led(TOGGLE_FRONT_LED);
-					chThdSleepMilliseconds(75);
+					chThdSleepMilliseconds(500);
 				}
 			}
 			

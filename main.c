@@ -14,7 +14,6 @@
 #include <sensors/VL53L0X/VL53L0X.h>
 #include <usbcfg.h> //-----
 #include <main.h>
-#include <chprintf.h> //------
 #include <motors.h>
 #include <pi_regulator.h>
 #include <movement.h>
