@@ -1,3 +1,10 @@
+/*
+ * main.h
+ *
+ *  Created on: mai 2022
+ *      Author: Abipour Misha, Leriche Maxime
+ */
+
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -31,19 +38,17 @@ extern "C" {
 #define FRONT_LED_OFF 0
 #define FRONT_LED_ON 1
 
-
 //CONSTANTS MAINLY USED IN "pi_regulator.c"
 #define MODE_REGULATOR_OFF 0
 #define MODE_REGULATOR_ON 1
 #define GOAL_DISTANCE 60
-#define MAX_ERROR_THRESHOLD		1.5*MAX_DIST_DETECTION
+#define MAX_ERROR_THRESHOLD		1.5 * MAX_DIST_DETECTION
 //we added a safety factor of 1.5 in case there is some noise in the TOF sensor
 
 #define KP						5
 #define KI 						0.2	//must not be zero
 #define MAX_SUM_ERROR 			80
 #define GOAL_DISTANCE 60	//distance en mm
-
 
 //CONSTANTS MAINLY USED IN "width_detection.c"
 #define MODE_CAMERA_OFF 0
@@ -60,8 +65,6 @@ extern "C" {
 #define TOGGLE_BODY_LED 2
 #define TOGGLE_FRONT_LED 2
 
-
-
 /** Robot wide IPC bus. */
 extern messagebus_t bus;
 
@@ -70,5 +73,4 @@ extern parameter_namespace_t parameter_root;
 #ifdef __cplusplus
 }
 #endif
-
 #endif
