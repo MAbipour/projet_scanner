@@ -8,11 +8,9 @@
 
 #include "ch.h"
 #include "hal.h"
-#include <math.h>
-#include <usbcfg.h>    //starts the serial communication
+#include <motors.h>
 #include <sensors/VL53L0X/VL53L0X.h>
 #include <main.h>
-#include <motors.h>
 #include <pi_regulator.h>
 #include <movement.h>
 #include <width_detection.h>
@@ -27,8 +25,10 @@ int16_t pi_regulator(uint16_t distance, u_int16_t goal)
 
 	error = (distance - goal);
 
-	//disables the PI regulator if the error is to small
-	//this avoids to always move
+	/*disables the PI regulator if the error is to big it is
+	another security to prevent the e-puck from rushing towards
+	a non-existing target
+	*/
 	if(error > MAX_ERROR_THRESHOLD) 
 	{
 		mode_regulator = MODE_REGULATOR_OFF;
@@ -39,7 +39,7 @@ int16_t pi_regulator(uint16_t distance, u_int16_t goal)
 
 	sum_error += error;
 
-	//we set a maximum and minimum for the sum to avoid an uncontrolled growth
+	//we set a maximum for the sum to avoid an uncontrolled growth
 	if(sum_error > MAX_SUM_ERROR)
 	{
 		sum_error = MAX_SUM_ERROR;

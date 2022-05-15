@@ -6,19 +6,15 @@
  				du professeur Francesco Mondada modifié par Misha Abipour
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <width_detection.h>
-#include "ch.h"
-#include "hal.h"
-#include <usbcfg.h>
-#include <pi_regulator.h>
-#include <movement.h>
+
+#include <ch.h>
+#include <hal.h>
+#include <camera/po8030.h>
 #include <leds.h>
 #include <main.h>
-#include <camera/po8030.h>
+#include <movement.h>
+#include <width_detection.h>
+
 
 static uint8_t cam_mode = MODE_CAMERA_OFF;
 static BSEMAPHORE_DECL(image_ready_sem, TRUE);
@@ -41,8 +37,11 @@ uint16_t extract_line_width(uint8_t *buffer)
 		//search for a begin
 		while(stop == 0 && i < (Y_IMAGE_SIZE - WIDTH_SLOPE))
 		{
-			//the slope must at least be WIDTH_SLOPE wide and is compared
-		    //to the mean of the image
+			/*the slope must at least be WIDTH_SLOPE wide and is compared
+		    to the mean of the image. We added a correction coefficient
+		    because the average values above the edges are higher than
+		    the average. Without a correction coefficient unexpected lines
+		    are detected*/
 		    if(buffer[i] > mean && buffer[i + WIDTH_SLOPE] < 
 		       mean - CORR_COEFF)
 			{
@@ -190,14 +189,13 @@ static THD_FUNCTION(ProcessImage, arg)
 				for(uint8_t i = 0; i < 10; i++)
 				{
 					set_front_led(TOGGLE_FRONT_LED);
-					chThdSleepMilliseconds(500);
+					chThdSleepMilliseconds(75);
 				}
 			}
 			
 			cam_mode = MODE_CAMERA_OFF;
 			set_front_led(FRONT_LED_ON);
     		start_motor_rot_avoidance(); //move away of the previous object
-    		//stop_motor();
     		set_mode_mot(MODE_MOT_ROTATION);
 		}
 			

@@ -5,17 +5,17 @@
  *      Author: Leriche Maxime
  */
 
-#include  <stdio.h> 
-#include  <stdlib.h> 
-#include  <string.h> 
+
 #include  <math.h> 
 #include  <motors.h> 
-#include  <width_detection.h> 
-#include  <sensors/VL53L0X/VL53L0X.h> 
-#include  <pi_regulator.h> 
-#include  <main.h> 
-#include  <movement.h> 
 #include  <leds.h> 
+#include  <sensors/VL53L0X/VL53L0X.h>
+#include  <main.h>
+#include  <movement.h>
+#include  <pi_regulator.h>
+#include  <width_detection.h>
+
+
 
 static uint8_t mode_mot = MODE_MOT_ROTATION;
 
@@ -79,10 +79,12 @@ static THD_FUNCTION(ThdMovement, arg)
         		//Algorithm to detect the center of the object 
         	    if(distance < MAX_DIST_DETECTION)
         	    {
-        	    	/*if(distance < MIN_DIST_DETECTION)
+        	    	/*prevents the e-puck from launching a scan the first
+        	    	time it captures a distance value*/
+        	    	if(distance == 0)
         	    	{
         	    		break;
-        	    	}*/
+        	    	}
         	    	
         	    	// one step back to precisely scan the whole object 
         	    	start_motor_rot(ONE_STEP_BACK,SPEED_MOT_ROT);

@@ -32,7 +32,7 @@ extern "C" {
 #define ONE_STEP_BACK -1
 
 #define MAX_DIST_DETECTION 350 //in mm
-#define MIN_DIST_DETECTION 40
+#define MIN_DIST_DETECTION 40  //in mm
 #define NOT_DEFINED 65535
 
 #define FRONT_LED_OFF 0
@@ -42,8 +42,8 @@ extern "C" {
 #define MODE_REGULATOR_OFF 0
 #define MODE_REGULATOR_ON 1
 #define GOAL_DISTANCE 60
-#define MAX_ERROR_THRESHOLD		1.5 * MAX_DIST_DETECTION
 //we added a safety factor of 1.5 in case there is some noise in the TOF sensor
+#define MAX_ERROR_THRESHOLD		1.5 * MAX_DIST_DETECTION
 
 #define KP						5
 #define KI 						0.2	//must not be zero

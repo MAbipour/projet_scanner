@@ -2,8 +2,8 @@
  * pi_regulator.h
  *
  *  Created on: mai 2022
- *      Author: Author: Code basÃ© sur le TP4 du cours "SystÃ¨me embarquÃ© et robotique" 
- 				du professeur Francesco Mondada modifiÃ© par Misha Abipour
+ *      Author: Author: Code basé sur le TP4 du cours "Système embarqué et robotique"
+ 				du professeur Francesco Mondada modifié par Misha Abipour
  */
 
 #ifndef PI_REGULATOR_H
