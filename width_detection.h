@@ -6,12 +6,11 @@
                 du professeur Francesco Mondada modifié par Misha Abipour
  */
 
-#include <stdlib.h>
 
-#ifndef COLOR_DETECTION_H_
-#define COLOR_DETECTION_H_
+#ifndef WIDTH_DETECTION_H_
+#define WIDTH_DETECTION_H_
 
 void process_image_start(void);
 void activate_camera(void);
 
-#endif /* COLOR_DETECTION_H_ */
+#endif /* WIDTH_DETECTION_H_ */
